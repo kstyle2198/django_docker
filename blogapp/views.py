@@ -6,11 +6,11 @@ from django.views import generic
 
 class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by('-updated_on')
-    template_name = 'post_list.html'
+    template_name = 'blogapp/post_list.html'
     
 class DetailView(generic.DetailView):
     model = Post
-    template_name = 'post_detail.html'
+    template_name = 'blogapp/post_detail.html'
 
 # def blog(request):
     

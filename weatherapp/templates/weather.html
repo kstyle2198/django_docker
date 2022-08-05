@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-</head>
-<body>
+{% extends "blogapp/base.html" %}
+
+{% block content%}
     <h1>Weather App</h1>
 
     <form method="POST">
-        {% csrf_token%}
+        {% csrf_token %}
 
         <input type="text" name="city" placehoder="Choose your City...">
         <button type="submit"> Search </button>
@@ -20,19 +13,16 @@
     {% if country_code and coordinate and temp and pressure and humidity %}
 
     <h4><span>Country Code: </span> {{country_code}}</h4>
+    <h4><span>City: </span> {{city}}</h4>
+    <h4><span>Time: </span> {{time}}</h4>
     <h4><span>Temperature: </span> {{temp}}</h4>
     <h4><span>Pressure: </span> {{pressure}}</h4>
     <h4><span>Humidity: </span> {{humidity}}</h4>
-    <h4><span>Forecast: </span> {{main}} <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px">
-    </h4>
+    <h4><span>Forecast: </span> {{main}} <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
     <h4><span>Description: </span> {{description}}</h4>
+
+
     <h4></h4>
 
-
-
     {% endif %}
-
-
-
-</body>
-</html>
+{% endblock %}

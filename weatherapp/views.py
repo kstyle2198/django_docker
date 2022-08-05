@@ -1,31 +1,32 @@
 from django.shortcuts import render
-import urllib.request
+import requests
 import json
-
-# Create your views here.
-
-# def weather(request):
-    
-#     return render(request, 'weather.html')
+import datetime
 
 
-def weather(request):
-    if request.method == 'POST':
+def weather(request):  
+    print(request.POST)
+
+    if 'city' in request.POST and request.POST['city'] != '':
         city = request.POST['city']
-        source = urllib.request.urlopen('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&unit=metric&appid=b628a7d2c27f2ee337e0c0cfe94f6277').read()
-        json_data = json.loads(source)
-        data = {
-            "country_code": str(json_data['sys']['country']),
-            "coordinate": str(json_data['coord']['lon'])+ ', ' + str(json_data['coord']['lat']),
-            "temp": str(json_data['main']['temp']),
-            "pressure": str(json_data['main']['pressure']),
-            "humidity": str(json_data['main']['humidity']),
-            "main": str(json_data['weather'][0]['main']),
-            "description": str(json_data['weather'][0]['description']),
-            'icon': json_data['weather'][0]['icon'],
-        }
-        print(data)
     else:
-        data= {}
-    
+        city = 'Seoul'
+    appid = 'b628a7d2c27f2ee337e0c0cfe94f6277'
+    URL = 'http://api.openweathermap.org/data/2.5/weather'
+    PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
+    r = requests.get(url=URL, params=PARAMS)
+    res = r.json()
+    data = {
+        "country_code": str(res['sys']['country']),
+        'city': city,
+        "coordinate": str(res['coord']['lon'])+ ', ' + str(res['coord']['lat']),
+        "temp": str(res['main']['temp']),
+        "pressure": str(res['main']['pressure']),
+        "humidity": str(res['main']['humidity']),
+        "main": str(res['weather'][0]['main']),
+        "description": str(res['weather'][0]['description']),
+        'time': datetime.date.today(),
+        'icon': res['weather'][0]['icon'],
+    }
+    print(data)
     return render(request, "weather.html", data)

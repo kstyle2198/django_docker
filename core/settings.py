@@ -38,11 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pjt_money.apps.PjtMoneyConfig',
+    'homeapp.apps.HomeappConfig',
     'weatherapp.apps.WeatherappConfig',
     'blogapp.apps.BlogappConfig',
     'moneyapp.apps.MoneyappConfig',
-    # 'newsapp.apps.NewsappConfig',
     'loginapp.apps.LoginappConfig',
 
 ]
@@ -118,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
