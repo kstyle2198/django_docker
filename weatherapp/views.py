@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
-import json
 import datetime
+
 
 
 def weather(request):  
@@ -16,6 +16,7 @@ def weather(request):
     PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
     r = requests.get(url=URL, params=PARAMS)
     res = r.json()
+    print(res)
     data = {
         "country_code": str(res['sys']['country']),
         'city': city,
@@ -25,7 +26,8 @@ def weather(request):
         "humidity": str(res['main']['humidity']),
         "main": str(res['weather'][0]['main']),
         "description": str(res['weather'][0]['description']),
-        'time': datetime.date.today(),
+        "timezone": str(res['timezone']),
+        'time': datetime.datetime.now(),
         'icon': res['weather'][0]['icon'],
     }
     print(data)

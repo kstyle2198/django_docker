@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+{% load static %}
 <head>
   <title>My Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,13 +9,17 @@
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/journal/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css">
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sketchy/bootstrap.min.css"> -->
+  <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
+  <script src="https://unpkg.com/typeit@8.3.3/dist/index.umd.js"></script>
+  <link href="{% static 'css/scrollout.css' %}" rel="stylesheet" />
+
 </head>
 
 <body>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/home/">K Style in July</a>
+      <a class="navbar-brand" href="{% url 'post_list' %}">K Style Blog</a>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item text-black">
@@ -24,25 +28,6 @@
           <li class="nav-item text-black">
             <a class="nav-link text-black font-weight-bold" href="{% url 'post_list' %}">Blog</a>
           </li>
-          <li class="nav-item text-black">
-            <a class="nav-link text-black font-weight-bold" href="/weather/">Weather</a>
-          </li>
-          <li class="nav-item text-black">
-            <a class="nav-link text-black font-weight-bold" href="/money/">Money</a>
-          </li>
-          <li class="nav-item text-black">
-            <a class="nav-link text-black font-weight-bold" href="#">Reports</a>
-          </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item text-black">
-            <a class="nav-link text-black font-weight-bold" href="{% url 'logout' %}">Log Out</a>
-          </li>
-          {% else %}
-          <li class="nav-item text-black">
-            <a class="nav-link text-black font-weight-bold" href="{% url 'login' %}">Log In</a>
-          </li>
-          {% endif%}
-
         </ul>
       </div>
     </div>

@@ -1,17 +1,36 @@
 {% extends 'blogapp/base.html' %} 
-{% block content %}
+{% load static %}{% block content %}
 
 <div class="container">
   <div class="row">
     <div class="col-md-8 card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
-        <p class="card-text ">{{ object.content | safe }}</p>
-      </div>
+
+        <div class="card-body">
+          <section data-scroll>
+          <div class="title">
+            <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+          </div>
+          <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+          <p class="card-text ">{{ object.content | safe }}</p>
+        </section>
+        </div>
+
     </div>
+
     {% block sidebar %} {% include 'blogapp/sidebar.html' %} {% endblock sidebar %}
   </div>
 </div>
+<script>
+  ScrollOut({
+    onShown: (element) => {
+      new TypeIt(element.querySelector('.title'), {
+        startDelay: 100,
+        cursor: false,
+      })
+        .pause(200)
+        .go();
+    },
+  });
+</script>
 
 {% endblock content %}
