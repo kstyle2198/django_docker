@@ -1,34 +1,79 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 import datetime
-
+from timezonefinder import TimezoneFinder
+import pytz
+from .models import City
+from .forms import CityForm
 
 
 def weather(request):  
-    print(request.POST)
-
-    if 'city' in request.POST and request.POST['city'] != '':
-        city = request.POST['city']
-    else:
-        city = 'Seoul'
+    
     appid = 'b628a7d2c27f2ee337e0c0cfe94f6277'
     URL = 'http://api.openweathermap.org/data/2.5/weather'
-    PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
-    r = requests.get(url=URL, params=PARAMS)
-    res = r.json()
-    print(res)
-    data = {
-        "country_code": str(res['sys']['country']),
-        'city': city,
-        "coordinate": str(res['coord']['lon'])+ ', ' + str(res['coord']['lat']),
-        "temp": str(res['main']['temp']),
-        "pressure": str(res['main']['pressure']),
-        "humidity": str(res['main']['humidity']),
-        "main": str(res['weather'][0]['main']),
-        "description": str(res['weather'][0]['description']),
-        "timezone": str(res['timezone']),
-        'time': datetime.datetime.now(),
-        'icon': res['weather'][0]['icon'],
-    }
-    print(data)
-    return render(request, "weather.html", data)
+    weather_data = []
+    err_msg = ""
+    message = ""
+    message_class = ""
+
+    
+    if request.method == 'POST':
+        # print(request.POST)
+        form = CityForm(request.POST)
+
+        
+        if form.is_valid():
+            new_city = form.cleaned_data['name']
+            existing_city_count = City.objects.filter(name=new_city).count()
+            
+            if existing_city_count == 0:
+                PARAMS = {'q':new_city, 'appid':appid, 'units':'metric'}
+                r = requests.get(url=URL, params=PARAMS).json()
+                if r['cod'] == 200:
+                    form.save()
+                else:
+                    err_msg = "City does not exist"
+            else:
+                err_msg = "City already exists in the database"
+        # print(err_msg)
+
+        if err_msg:
+            message = err_msg
+            message_class = 'btn btn-outline-danger'
+        else:
+            message = "City added successfully"
+            message_class = 'btn btn-outline-success'
+
+            
+    form = CityForm()
+    cities = City.objects.all()
+
+    
+    for city in cities:
+        PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
+
+        r = requests.get(url=URL, params=PARAMS).json()
+        # print(r)
+        
+        
+        city_weather = {
+            'city': city.name,
+            'temp': r['main']['temp'],
+            'description': r['weather'][0]['description'],
+            'icon': r['weather'][0]['icon'],
+            'main': r['weather'][0]['main'],
+        }
+        
+        weather_data.append(city_weather)
+    print(weather_data)
+    context = {'weather_data': weather_data, 
+               'form': form,
+               'message': message,
+               'message_class': message_class,
+               }
+    return render(request, 'weather.html', context)
+        
+
+def delete_city(request, city_name):
+    City.objects.get(name = city_name).delete()
+    return redirect('/weather/')
