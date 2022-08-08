@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'blogapp.apps.BlogappConfig',
     'moneyapp.apps.MoneyappConfig',
     'loginapp.apps.LoginappConfig',
+    'dartapp.apps.DartappConfig',
 
 ]
 

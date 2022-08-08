@@ -1,0 +1,11 @@
+{% extends "blogapp/base.html" %} {% block content%}
+<body>
+  <h1>Dart</h1>
+  {% for key, value in context.items %}
+  <h3>{{key}}</h3>
+  {% for k, v in value.items %}
+  <h4>{{k}} : {{v}} </h4>
+  {% endfor %}
+  {% endfor %}
+</body>
+{% endblock %}

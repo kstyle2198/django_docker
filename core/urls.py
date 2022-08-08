@@ -10,5 +10,6 @@ urlpatterns = [
     path('weather/', include('weatherapp.urls')),
     path('blog/', include('blogapp.urls')),
     path('money/', include('moneyapp.urls')),
+    path('dart/', include('dartapp.urls')),
     path('accounts/', include('loginapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
