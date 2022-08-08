@@ -16,10 +16,10 @@
             {% endif %}
           </form>
         </div>
+        <br>
         <p class="fs-5 text-muted">
-          Quickly build an effective pricing table for your potential customers
-          with this Bootstrap example. It’s built with default Bootstrap
-          components and utilities with little customization.
+          Openweathermap API를 활용하여 도시별 날씨를 조회할 수 있습니다. <br>
+          Openweathermap API에서 제공하는 위도,경도 정보와 TimezoneFinder 및 pytz 라이브러리를 활용하여 각 도시별 현지 날짜와 시간 정보를 확인할 수 있습니다.
         </p>
       </div>
     </header>
@@ -50,17 +50,21 @@
                     {{city_weather.temp}} ℃
                   </h5>
                 </li>
-                <!-- <li><h5><span>Timezone: </span> {{b.timezone}}</h5></li>
-                      <li><h5><span>Local Time: </span> {{b.localtime1}}</h5></li> -->
                 <li>
                   <h5>
                     <span>Description:</span>
                     {{city_weather.description}}
                   </h5>
                 </li>
+                <li>
+                  <h5>
+                    <span>Local Time:</span>
+                    {{city_weather.localtime}}
+                  </h5>
+                </li>
               </ul>
               <a href="{% url 'delete_city' city_weather.city %}">
-              <button type="button" class="w-100 btn btn-lg btn-outline-primary">
+              <button type="button" class="w-50 btn btn-lg btn-outline-primary">
                 Delete
               </button>
               </a>

@@ -6,6 +6,17 @@ import pytz
 from .models import City
 from .forms import CityForm
 
+def get_tz(a, b):
+    tz = TimezoneFinder()
+    tz = tz.timezone_at(lng=a, lat=b)
+    return tz
+
+def get_localtime(tz):
+    tz=pytz.timezone(tz)
+    localtime = datetime.datetime.now(tz)
+    str_localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
+    return str_localtime    
+
 
 def weather(request):  
     
@@ -53,7 +64,9 @@ def weather(request):
         PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
 
         r = requests.get(url=URL, params=PARAMS).json()
-        # print(r)
+        print(r)
+        tz = get_tz(r['coord']['lon'], r['coord']['lat'])
+        localtime = get_localtime(tz)
         
         
         city_weather = {
@@ -62,10 +75,11 @@ def weather(request):
             'description': r['weather'][0]['description'],
             'icon': r['weather'][0]['icon'],
             'main': r['weather'][0]['main'],
+            'localtime': localtime
         }
         
         weather_data.append(city_weather)
-    print(weather_data)
+    # print(weather_data)
     context = {'weather_data': weather_data, 
                'form': form,
                'message': message,
