@@ -15,14 +15,14 @@ base_info = {
 
 
 def divide_100(num):
-    return int(np.around(float(num)/1000000))
+    return "{0: >+20,}".format(int(np.around(float(num)/1000000)))
 
 def get_statement_info(request):
     r=requests.get(f"https://opendart.fss.or.kr/api/fnlttSinglAcntAll.json?crtfc_key={api_key}&corp_code={base_info['corp_code']}&bsns_year={base_info['target_year']}&reprt_code={base_info['target_report']}&fs_div={base_info['report_type']}").json()
     # print(r['list'])
     df = pd.DataFrame(r['list'])
     # print(df)
-    df.to_excel('dart_df.xlsx', encoding='utf-8')
+    # df.to_excel('dart_df.xlsx', encoding='utf-8')
     df = df.loc[:, ['account_nm', 'thstrm_amount', 'frmtrm_amount', 'bfefrmtrm_amount']]
     df = df[df["account_nm"].isin(['유동자산','현금및현금성자산','매출채권', '미수금', '재고자산', '자산총계', '유동부채', '부채총계', '수익(매출액)', '매출액', '매출원가', '매출총이익', '영업이익', '영업이익(손실)', '총포괄이익', '총포괄이익(손실)'])]
     df = pd.DataFrame(df).fillna(0)
@@ -32,8 +32,9 @@ def get_statement_info(request):
     df["전전기"] = df["전전기"].apply(divide_100)
     df.set_index('구분', drop=True, append=False, inplace=True)
     dict_data = df.to_dict()
-    dict_data.update({"base" : base_info})
-    return render(request, 'dart.html', {'context' : dict_data})
+    # dict_data.update({"base" : base_info})
+    # print(dict_data)
+    return render(request, 'dart.html', {'context' : {'data': dict_data, 'base': base_info}})
     
 if __name__ == "__main__":
     get_statement_info()

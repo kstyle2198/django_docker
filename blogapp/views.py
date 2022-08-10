@@ -11,7 +11,3 @@ class PostList(generic.ListView):
 class DetailView(generic.DetailView):
     model = Post
     template_name = 'blogapp/post_detail.html'
-
-# def blog(request):
-    
-#     return render(request, 'blog.html')
