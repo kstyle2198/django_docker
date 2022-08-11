@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'moneyapp.apps.MoneyappConfig',
     'loginapp.apps.LoginappConfig',
     'dartapp.apps.DartappConfig',
+    'covid.apps.CovidConfig',
 
 ]
 
