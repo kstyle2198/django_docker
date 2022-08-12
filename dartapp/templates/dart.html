@@ -1,16 +1,5 @@
 {% extends "homeapp/base.html" %}{% load static %}
-
 {% block content%}
-<!-- <body>
-  <h1>Dart</h1>
-  {% for key, value in context.items %}
-  <h3>{{key}}</h3>
-  {% for k, v in value.items %}
-  <h4>{{k}} : {{v}}</h4>
-  {% endfor %}
-  {% endfor %}
-
-</body> -->
 
 <link href="{% static 'css/styles_dart.css' %}" rel="stylesheet" />
 <!-- Bootstrap icons-->
@@ -18,89 +7,85 @@
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 
-    <body>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">OpenDart 기업 재무재표!</h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                                <!-- Email address input-->
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Company Name" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Search</button></div>
+<body>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h1 class="mb-5">OpenDart 기업 재무재표!</h1>
+                        <!-- Signup form-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- * * SB Forms Contact Form * *-->
+                        <!-- * * * * * * * * * * * * * * *-->
+                        <!-- This form is pre-integrated with SB Forms.-->
+                        <!-- To make this form functional, sign up at-->
+                        <!-- https://startbootstrap.com/solution/contact-forms-->
+                        <!-- to get an API token!-->
+                        <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                            <!-- Email address input-->
+                            <div class="row">
+                                <div class="col">
+                                    <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Company Name" data-sb-validations="required,email" />
+                                    <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                                    <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
                                 </div>
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                                <div class="d-none" id="submitSuccessMessage">
-                                    <div class="text-center mb-3">
-                                        <div class="fw-bolder">Form submission successful!</div>
-                                        <p>To activate this form, sign up at</p>
-                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                    </div>
+                                <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Search</button></div>
+                            </div>
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    <p>To activate this form, sign up at</p>
+                                    <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
-                                <!-- Submit error message-->
-                                <!---->
-                                <!-- This is what your users will see when there is-->
-                                <!-- an error submitting the form-->
-                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
-                            </form>
-                        </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Icons Grid-->
-        <section class="features-icons bg-light text-center">
-            <div class="container">
-                <h2>{{context.base}}</h2>
-                <h2>{{context.base.target_year}}년도 사업보고서 주요 재무정보</h2>
-                <div class="row">
-                    {% for key, value in context.data.items %}
-                    <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <span class="fa-stack fa-2x">
-                                <i class="fa-solid fa-circle-dollar fa-stack-2x text-success"></i>
-                            </span>
-                            <h4>{{key}} (단위 백만원)</h4>
-                            {% for k, v in value.items %}
-                            <ul class="btn btn-outline-info">{{k}} : {{v}}</ul>
-                            {% endfor %}
-                            
-                        </div>
+        </div>
+    </header>
+    <!-- Icons Grid-->
+    <section class="features-icons bg-light text-center">
+        <div class="container">
+            <h2>{{context.base}}</h2>
+            <h2>{{context.base.target_year}}년도 사업보고서 주요 재무정보</h2>
+            <div class="row">
+                {% for key, value in context.data.items %}
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa-solid fa-circle-dollar fa-stack-2x text-success"></i>
+                        </span>
+                        <h4>{{key}} (단위 백만원)</h4>
+                        {% for k, v in value.items %}
+                        <ul class="btn btn-outline-info">{{k}} : {{v}}</ul>
+                        {% endfor %}
+                        
                     </div>
-                    {% endfor %}
-
                 </div>
-            </div>
-       
+                {% endfor %}
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{% static 'js/scripts_dart.js' %}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+            </div>
+        </div>
+    
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{% static 'js/scripts_dart.js' %}"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
 
 {% endblock %}

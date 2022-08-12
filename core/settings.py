@@ -142,3 +142,9 @@ LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/home/'
 
 APPEND_SLASH = False
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR/'media'
+
+from datetime import datetime
+MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')

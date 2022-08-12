@@ -64,7 +64,7 @@ def weather(request):
         PARAMS = {'q':city, 'appid':appid, 'units':'metric'}
 
         r = requests.get(url=URL, params=PARAMS).json()
-        print(r)
+        # print(r)
         tz = get_tz(r['coord']['lon'], r['coord']['lat'])
         localtime = get_localtime(tz)
         
