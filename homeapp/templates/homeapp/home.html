@@ -3,7 +3,7 @@
 
 <!-- Masthead-->
 <header class="masthead">
-  <div class="container">
+  <div class="container">      
       <div id="title" class="masthead-subheading rellax" data-rellax-speed="4">Welcome to K Style ...</div>
       <div class="masthead-heading text-uppercase rellax" data-rellax-speed="2">It's Nice To Meet You</div>
       <div class="js-clock rellax" data-rellax-speed="-1" ><h1>00:00</h1></div>
@@ -221,4 +221,21 @@
   </div>
 </div>
 {% endfor %}
+<script>
+    function changeBg(){
+        const images = [
+        'url("../static/assets/img/bgimg/1.jpg")',
+        'url("../static/assets/img/bgimg/2.jpg")',
+        'url("../static/assets/img/bgimg/3.jpg")',
+        'url("../static/assets/img/bgimg/4.jpg")',
+        'url("../static/assets/img/bgimg/5.jpg")',
+        ]
+        const section = document.querySelector('header.masthead')
+        const bg = images[Math.floor(Math.random() * images.length)];
+        section.style.backgroundImage = bg;
+    }
+    setInterval(changeBg, 1500)
+    console.log(bg)
+
+</script>
 {% endblock %}
