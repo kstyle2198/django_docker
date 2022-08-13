@@ -5,6 +5,10 @@ from timezonefinder import TimezoneFinder
 import pytz
 from .models import City
 from .forms import CityForm
+import time
+import aiohttp
+import asyncio
+
 
 def get_tz(a, b):
     tz = TimezoneFinder()
@@ -17,8 +21,9 @@ def get_localtime(tz):
     str_localtime = localtime.strftime('%Y-%m-%d %H:%M:%S')
     return str_localtime    
 
-
-def weather(request):  
+def weather(request):  # 총 소요 시간 : 2.346470355987549
+    
+    starting_time = time.time()
     
     appid = 'b628a7d2c27f2ee337e0c0cfe94f6277'
     URL = 'http://api.openweathermap.org/data/2.5/weather'
@@ -85,6 +90,9 @@ def weather(request):
                'message': message,
                'message_class': message_class,
                }
+    total_time = time.time() - starting_time
+    print(f"총 소요 시간 : {total_time}")
+    
     return render(request, 'weather.html', context)
         
 

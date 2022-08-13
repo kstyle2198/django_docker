@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'homeapp.apps.HomeappConfig',
     'weatherapp.apps.WeatherappConfig',
     'blogapp.apps.BlogappConfig',
-    'moneyapp.apps.MoneyappConfig',
+    # 'moneyapp.apps.MoneyappConfig',
     'loginapp.apps.LoginappConfig',
     'dartapp.apps.DartappConfig',
     'covid.apps.CovidConfig',
@@ -148,3 +148,5 @@ MEDIA_ROOT = BASE_DIR/'media'
 
 from datetime import datetime
 MARKDOWNX_MEDIA_PATH = datetime.now().strftime('markdownx/%Y/%m/%d')
+
+# os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
