@@ -221,6 +221,7 @@
   </div>
 </div>
 {% endfor %}
+
 <script>
     function changeBg(){
         const images = [
@@ -229,13 +230,15 @@
         'url("../static/assets/img/bgimg/3.jpg")',
         'url("../static/assets/img/bgimg/4.jpg")',
         'url("../static/assets/img/bgimg/5.jpg")',
+        'url("../static/assets/img/bgimg/6.jpg")',
+        'url("../static/assets/img/bgimg/7.jpg")',
         ]
         const section = document.querySelector('header.masthead')
         const bg = images[Math.floor(Math.random() * images.length)];
         section.style.backgroundImage = bg;
     }
-    setInterval(changeBg, 1500)
-    console.log(bg)
 
+    setInterval(changeBg, 2000)
 </script>
+
 {% endblock %}
