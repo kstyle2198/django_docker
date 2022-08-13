@@ -12,5 +12,7 @@ urlpatterns = [
     path('money/', include('moneyapp.urls')),
     path('dart/', include('dartapp.urls')),
     path('accounts/', include('loginapp.urls')),
-    path('covid/', include('covid.urls'))
+    path('covid/', include('covid.urls')),
+    path('dev/', include('devapp.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

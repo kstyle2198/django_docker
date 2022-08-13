@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'loginapp.apps.LoginappConfig',
     'dartapp.apps.DartappConfig',
     'covid.apps.CovidConfig',
+    'devapp.apps.DevappConfig',
 
 ]
 

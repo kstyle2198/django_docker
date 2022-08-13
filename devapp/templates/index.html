@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>총 {{count}} 개               <span>소요시간(초) : {{time}}</span></p>
+    {% for d in data %}
+
+    <p>{{d.0}}</p>
+    <img src="{{d.1}}" alt="" style="width: 100px">
+
+    {% endfor %}
+
+</body>
+</html>
