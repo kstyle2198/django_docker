@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="{%static 'css/styles.css' %}" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Page</title>
+</head>
+<body>
+
+<header class="py-5">
+    <div class="container px-lg-5">
+        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+            <div class="m-4 m-lg-5">
+                <h1 class="display-5 fw-bold">포켓몬 {{count}}개를 불러오는데 걸리는 시간 비교</h1>
+                <p class="fs-4">소요시간(초) : {{time}}</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'dev1' %}">Synchromous</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'dev2' %}">Asynchronous</a>
+                <a class="btn btn-primary btn-lg" href="{% url 'dev3' %}">Coroutine Concurrently</a>
+
+            </div>
+            <p><a class="btn btn-info btn-lg" href="{% url 'home' %}">to Home</a></p>
+
+        </div>
+    </div>
+</header>
+{% block content %}
+
+{% endblock content %}
+
+</body>
+</html>
