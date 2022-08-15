@@ -8,5 +8,10 @@ def home(request):
     
     data1 = Portfolio.objects.all()
     data2 =  About.objects.all()
-    context = {'portfolios': data1, 'abouts': data2}
+    data3 =  About.objects.values()
+
+    print(data3)
+
+        
+    context = {'portfolios': data1, 'abouts': data3}
     return render(request, template, context)
