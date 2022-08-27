@@ -1,8 +1,9 @@
 {% extends "homeapp/base.html" %}
 {% load static %} {% block content %}
 
+
 <!-- Masthead-->
-<header class="masthead">
+<header class="masthead" id="header">
   <div class="container">      
       <div id="title" class="masthead-subheading rellax" data-rellax-speed="4">Welcome to K Style ...</div>
       <div class="masthead-heading text-uppercase rellax" data-rellax-speed="2">It's Nice To Meet You</div>
@@ -222,23 +223,21 @@
 </div>
 {% endfor %}
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    function changeBg(){
-        const images = [
-        'url("../static/assets/img/bgimg/1.jpg")',
-        'url("../static/assets/img/bgimg/2.jpg")',
-        'url("../static/assets/img/bgimg/3.jpg")',
-        'url("../static/assets/img/bgimg/4.jpg")',
-        'url("../static/assets/img/bgimg/5.jpg")',
-        'url("../static/assets/img/bgimg/6.jpg")',
-        'url("../static/assets/img/bgimg/7.jpg")',
-        ]
-        const section = document.querySelector('header.masthead')
-        const bg = images[Math.floor(Math.random() * images.length)];
-        section.style.backgroundImage = bg;
+    
+    var imgs = new Array("1.jpg","2.jpg","3.jpg","4.jpg","5.jpg");
+    function changeBg() {
+        var imgUrl = imgs[Math.floor(Math.random()*imgs.length)];
+        $('#header').css('background-image', 'url(../static/assets/img/bgimg/' + imgUrl + ')');
+        $('#header').fadeIn(1000); //this is new, will fade in smoothly
     }
 
-    setInterval(changeBg, 2000)
+    function changeBackgroundSmoothly() {
+        $('#header').fadeOut(1000, changeBg); //this is new, will fade out smoothly
+    }
+
+    setInterval(changeBackgroundSmoothly,5000);
 </script>
 
 {% endblock %}
