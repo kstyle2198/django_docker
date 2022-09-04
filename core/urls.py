@@ -11,8 +11,10 @@ urlpatterns = [
     path('blog/', include('blogapp.urls')),
     path('money/', include('moneyapp.urls')),
     path('dart/', include('dartapp.urls')),
-    path('accounts/', include('loginapp.urls')),
+    path('accounts1/', include('loginapp.urls')),
     path('covid/', include('covid.urls')),
     path('dev/', include('devapp.urls')),
+    path('accounts/',include('allauth.urls')),
+    path('sociallogin/', include('socialloginapp.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
