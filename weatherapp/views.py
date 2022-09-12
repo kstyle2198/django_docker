@@ -96,6 +96,7 @@ def weather(request):  # 총 소요 시간 : 2.346470355987549
     return render(request, 'weather.html', context)
         
 
+
 def delete_city(request, city_name):
     City.objects.get(name = city_name).delete()
     return redirect('/weather/')
